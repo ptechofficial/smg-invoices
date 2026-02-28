@@ -1,0 +1,7 @@
+.DS_Store
+.claude/
+statements/
+MSME.pdf
+invoices/pdf/
+__pycache__/
+*.pyc

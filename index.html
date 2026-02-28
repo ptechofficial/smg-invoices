@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Small Group — Invoice Dashboard</title>
+<style>
+  :root {
+    --bg: #fafafa; --card: #fff; --border: #e5e7eb; --text: #1f2937;
+    --muted: #6b7280; --accent: #111827; --accent-light: #f3f4f6;
+    --green: #059669; --green-bg: #ecfdf5;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
+
+  .header { background: var(--accent); color: #fff; padding: 20px 32px; display: flex; align-items: center; justify-content: space-between; }
+  .header h1 { font-size: 20px; font-weight: 700; letter-spacing: 1px; }
+  .header .subtitle { font-size: 12px; color: #9ca3af; letter-spacing: 0.5px; }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; }
+  .stat-card .label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 4px; }
+  .stat-card .value { font-size: 24px; font-weight: 700; }
+  .stat-card .sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  .tabs { display: flex; gap: 0; margin-bottom: 0; border-bottom: 2px solid var(--border); }
+  .tab { padding: 10px 24px; font-size: 13px; font-weight: 600; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; color: var(--muted); transition: all 0.2s; }
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  .toolbar { display: flex; align-items: center; gap: 12px; padding: 16px 0; flex-wrap: wrap; }
+  .search { padding: 8px 14px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px; width: 260px; outline: none; }
+  .search:focus { border-color: var(--accent); }
+  .btn { padding: 8px 16px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px; font-weight: 500; cursor: pointer; background: var(--card); color: var(--text); transition: all 0.15s; }
+  .btn:hover { background: var(--accent-light); }
+  .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .btn-primary:hover { opacity: 0.9; }
+  .btn-sm { padding: 5px 10px; font-size: 12px; }
+
+  .table-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead th { background: var(--accent-light); padding: 10px 14px; text-align: left; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); border-bottom: 1px solid var(--border); }
+  tbody td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: #f9fafb; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; }
+  .badge-paid { background: var(--green-bg); color: var(--green); }
+  .badge-export { background: #eff6ff; color: #2563eb; }
+  .badge-domestic { background: #fef3c7; color: #d97706; }
+  .amount { font-weight: 600; font-variant-numeric: tabular-nums; }
+  .text-right { text-align: right; }
+  .text-muted { color: var(--muted); }
+
+  .client-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; }
+  .client-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 20px; }
+  .client-card h3 { font-size: 15px; margin-bottom: 2px; }
+  .client-card .meta { font-size: 12px; color: var(--muted); margin-bottom: 12px; }
+  .client-card .detail { font-size: 12px; margin-bottom: 3px; }
+  .client-card .invoices-list { margin-top: 12px; border-top: 1px solid var(--border); padding-top: 10px; }
+  .client-card .inv-row { display: flex; justify-content: space-between; align-items: center; padding: 4px 0; font-size: 12px; }
+  .client-card .inv-row .inv-id { font-weight: 600; }
+  .client-total { font-weight: 700; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); font-size: 13px; display: flex; justify-content: space-between; }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .download-icon::before { content: "\2193 "; }
+  .hidden { display: none !important; }
+
+  @media (max-width: 768px) {
+    .container { padding: 12px; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .search { width: 100%; }
+    .client-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>SMALL GROUP</h1>
+    <div class="subtitle">Invoice Dashboard &mdash; FY 2025-26</div>
+  </div>
+  <div style="text-align:right">
+    <div style="font-size:12px;color:#9ca3af">GSTIN: 09AFPFS6465K1Z1</div>
+    <div style="font-size:12px;color:#9ca3af">A-299, Sector-47, Noida</div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="stats" id="stats"></div>
+
+  <div class="tabs">
+    <div class="tab active" data-tab="invoices">Invoices by Date</div>
+    <div class="tab" data-tab="clients">By Client</div>
+    <div class="tab" data-tab="registry">Client Registry</div>
+  </div>
+
+  <!-- INVOICES BY DATE -->
+  <div class="section active" id="sec-invoices">
+    <div class="toolbar">
+      <input type="text" class="search" id="inv-search" placeholder="Search invoices...">
+      <button class="btn btn-primary" onclick="downloadAllZip()"><span class="download-icon"></span>Download All as ZIP</button>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Invoice #</th>
+            <th>Date</th>
+            <th>Client</th>
+            <th>Description</th>
+            <th>Currency</th>
+            <th class="text-right">Amount</th>
+            <th class="text-right">INR Value</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="inv-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- BY CLIENT -->
+  <div class="section" id="sec-clients">
+    <div class="toolbar">
+      <input type="text" class="search" id="client-search" placeholder="Search clients...">
+      <button class="btn btn-primary" onclick="downloadAllZip()"><span class="download-icon"></span>Download All as ZIP</button>
+    </div>
+    <div class="client-grid" id="client-grid"></div>
+  </div>
+
+  <!-- CLIENT REGISTRY -->
+  <div class="section" id="sec-registry">
+    <div class="toolbar">
+      <input type="text" class="search" id="reg-search" placeholder="Search registry...">
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Client Name</th>
+            <th>Contact</th>
+            <th>Country</th>
+            <th>Type</th>
+            <th>Currency</th>
+            <th>Address</th>
+            <th>Tax ID</th>
+          </tr>
+        </thead>
+        <tbody id="reg-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+// ==================== DATA ====================
+const clients = [
+  {"id":"CLT-001","name":"Promptible LTD","contactPerson":"Liam Johnston","address":"86 Squire Bakers Lane, Markham, ON, L3P 3H2","country":"Canada","type":"export","currency":"CAD","taxId":"BN: 74607 0432"},
+  {"id":"CLT-002","name":"Granite Marketing LTD","contactPerson":"Stephen","address":"4 Morningfield Mews, Aberdeen, Scotland, AB15 4ER","country":"United Kingdom","type":"export","currency":"USD","taxId":""},
+  {"id":"CLT-003","name":"Dubai Finanz","contactPerson":"Faheem","address":"Level 702, Building 6, Emaar Square, Dubai","country":"UAE","type":"export","currency":"USD","taxId":""},
+  {"id":"CLT-004","name":"Homeowner Marketers","contactPerson":"","address":"Remote, Nationwide","country":"United States","type":"export","currency":"USD","taxId":""},
+  {"id":"CLT-005","name":"Limble CMMS","contactPerson":"Bryan Christiansen","address":"Lehi, Utah","country":"United States","type":"export","currency":"USD","taxId":""},
+  {"id":"CLT-006","name":"Athena Infotech Limited","contactPerson":"Aman Gupta","address":"6 Poole Lane, Staines-Upon-Thames, TW19 7DS","country":"United Kingdom","type":"export","currency":"USD","taxId":"Co#: 06503301"},
+  {"id":"CLT-007","name":"The Honeymooners Club","contactPerson":"Matthew Couto","address":"Toronto, ON","country":"Canada","type":"export","currency":"USD","taxId":""},
+  {"id":"CLT-008","name":"Heroklog GmbH","contactPerson":"Abhishek Raj","address":"Phoenixseestr. 18, 44263 Dortmund","country":"Germany","type":"export","currency":"INR","taxId":"VAT: DE364173658"},
+  {"id":"CLT-009","name":"Muskan Forever Pvt Ltd","contactPerson":"Rajender Kumar Sharma","address":"D-503, Wembley Estate, Sector-49, Gurgaon, Haryana","country":"India","type":"domestic","currency":"INR","taxId":"GSTIN: Pending"}
+];
+
+const invoices = [
+  {"id":"SG/2025-26/001","date":"2026-02-01","clientId":"CLT-001","description":"AI Development Services","currency":"CAD","amount":4210.13,"totalINR":259975.78,"status":"paid","file":"SG-2025-26-001"},
+  {"id":"SG/2025-26/002","date":"2026-02-02","clientId":"CLT-006","description":"AI Development Services","currency":"USD","amount":500,"totalINR":42714.92,"status":"paid","file":"SG-2025-26-002"},
+  {"id":"SG/2025-26/003","date":"2026-02-03","clientId":"CLT-004","description":"AI Development Services","currency":"USD","amount":1000,"totalINR":85990.03,"status":"paid","file":"SG-2025-26-003"},
+  {"id":"SG/2025-26/004","date":"2026-02-04","clientId":"CLT-008","description":"AI Development Services","currency":"INR","amount":51100,"totalINR":51100,"status":"paid","file":"SG-2025-26-004"},
+  {"id":"SG/2025-26/005","date":"2026-02-05","clientId":"CLT-004","description":"AI Development Services","currency":"USD","amount":750,"totalINR":64276.57,"status":"paid","file":"SG-2025-26-005"},
+  {"id":"SG/2025-26/006","date":"2026-02-06","clientId":"CLT-004","description":"AI Development Services","currency":"USD","amount":700,"totalINR":60086.07,"status":"paid","file":"SG-2025-26-006"},
+  {"id":"SG/2025-26/007","date":"2026-02-07","clientId":"CLT-001","description":"AI Development Services","currency":"CAD","amount":3387.33,"totalINR":210300.65,"status":"paid","file":"SG-2025-26-007"},
+  {"id":"SG/2025-26/010","date":"2026-02-08","clientId":"CLT-004","description":"AI Development Services","currency":"USD","amount":1200,"totalINR":103740.40,"status":"paid","file":"SG-2025-26-010"},
+  {"id":"SG/2025-26/011","date":"2026-02-09","clientId":"CLT-008","description":"AI Development Services","currency":"INR","amount":91026.97,"totalINR":91026.97,"status":"paid","file":"SG-2025-26-011"},
+  {"id":"SG/2025-26/012","date":"2026-02-10","clientId":"CLT-001","description":"DTR Consulting and Development","currency":"USD","amount":2500,"totalINR":220952.20,"status":"paid","file":"SG-2025-26-012"},
+  {"id":"SG/2025-26/013","date":"2026-02-11","clientId":"CLT-002","description":"AI Development Services","currency":"USD","amount":1250,"totalINR":108650.53,"status":"paid","file":"SG-2025-26-013"},
+  {"id":"SG/2025-26/014","date":"2026-02-12","clientId":"CLT-005","description":"AI Development Services","currency":"USD","amount":1400,"totalINR":120465.57,"status":"paid","file":"SG-2025-26-014"},
+  {"id":"SG/2025-26/015","date":"2026-02-14","clientId":"CLT-001","description":"AI Development Services","currency":"CAD","amount":3387.33,"totalINR":209993.57,"status":"paid","file":"SG-2025-26-015"},
+  {"id":"SG/2025-26/016","date":"2026-02-15","clientId":"CLT-004","description":"AI Development Services","currency":"USD","amount":1575,"totalINR":136688.35,"status":"paid","file":"SG-2025-26-016"},
+  {"id":"SG/2025-26/017","date":"2026-02-16","clientId":"CLT-007","description":"AI Development Services","currency":"USD","amount":173.75,"totalINR":15083.09,"status":"paid","file":"SG-2025-26-017"},
+  {"id":"SG/2025-26/018","date":"2026-02-17","clientId":"CLT-001","description":"DTR Consulting and Development","currency":"USD","amount":3500,"totalINR":316437.43,"status":"paid","file":"SG-2025-26-018"},
+  {"id":"SG/2025-26/020","date":"2026-02-18","clientId":"CLT-005","description":"AI Development Services","currency":"USD","amount":1400,"totalINR":123246.17,"status":"paid","file":"SG-2025-26-020"},
+  {"id":"SG/2025-26/021","date":"2026-02-19","clientId":"CLT-004","description":"AI Development Services","currency":"USD","amount":1930.50,"totalINR":170383.85,"status":"paid","file":"SG-2025-26-021"},
+  {"id":"SG/2025-26/022","date":"2026-02-20","clientId":"CLT-003","description":"AI Development Services","currency":"USD","amount":180,"totalINR":16298.07,"status":"paid","file":"SG-2025-26-022"},
+  {"id":"SG/2025-26/023","date":"2026-02-21","clientId":"CLT-002","description":"AI Development Services","currency":"USD","amount":750,"totalINR":66058.52,"status":"paid","file":"SG-2025-26-023"},
+  {"id":"SG/2025-26/024","date":"2026-02-22","clientId":"CLT-003","description":"AI Development Services","currency":"USD","amount":420,"totalINR":37966.75,"status":"paid","file":"SG-2025-26-024"},
+  {"id":"SG/2025-26/025","date":"2026-02-24","clientId":"CLT-004","description":"AI Development Services","currency":"USD","amount":2722.50,"totalINR":239748.30,"status":"paid","file":"SG-2025-26-025"},
+  {"id":"SG/2025-26/027","date":"2026-02-25","clientId":"CLT-008","description":"AI Development Services","currency":"INR","amount":78962.44,"totalINR":78962.44,"status":"paid","file":"SG-2025-26-027"},
+  {"id":"SG/2025-26/028","date":"2026-02-26","clientId":"CLT-003","description":"AI Development Services","currency":"USD","amount":800,"totalINR":72152.37,"status":"paid","file":"SG-2025-26-028"},
+  {"id":"SG/2025-26/029","date":"2026-02-28","clientId":"CLT-001","description":"DTR Consulting and Development","currency":"USD","amount":3500,"totalINR":322896.06,"status":"paid","file":"SG-2025-26-029"}
+];
+
+// ==================== HELPERS ====================
+const clientMap = {};
+clients.forEach(c => clientMap[c.id] = c);
+
+function formatDate(d) {
+  const dt = new Date(d + 'T00:00:00');
+  return dt.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+}
+
+function formatAmount(amount, currency) {
+  if (currency === 'INR') return indianFormat(amount);
+  return amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+function indianFormat(n) {
+  const s = n.toFixed(2);
+  const [integer, decimal] = s.split('.');
+  if (integer.length <= 3) return integer + '.' + decimal;
+  const last3 = integer.slice(-3);
+  let rest = integer.slice(0, -3);
+  const groups = [];
+  while (rest.length > 0) { groups.unshift(rest.slice(-2)); rest = rest.slice(0, -2); }
+  return groups.join(',') + ',' + last3 + '.' + decimal;
+}
+
+function formatINR(n) { return 'INR ' + indianFormat(n); }
+
+// ==================== STATS ====================
+function renderStats() {
+  const totalINR = invoices.reduce((s, i) => s + i.totalINR, 0);
+  const uniqueClients = new Set(invoices.map(i => i.clientId)).size;
+  const paidCount = invoices.filter(i => i.status === 'paid').length;
+
+  document.getElementById('stats').innerHTML = `
+    <div class="stat-card">
+      <div class="label">Total Invoices</div>
+      <div class="value">${invoices.length}</div>
+      <div class="sub">${paidCount} paid</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">Total Revenue (INR)</div>
+      <div class="value">${formatINR(totalINR)}</div>
+      <div class="sub">FY 2025-26 &bull; Feb 2026</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">Active Clients</div>
+      <div class="value">${uniqueClients}</div>
+      <div class="sub">${clients.filter(c => c.type === 'export').length} export, ${clients.filter(c => c.type === 'domestic').length} domestic</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">Avg Invoice (INR)</div>
+      <div class="value">${formatINR(totalINR / invoices.length)}</div>
+      <div class="sub">Across ${invoices.length} invoices</div>
+    </div>
+  `;
+}
+
+// ==================== INVOICES TABLE ====================
+function renderInvoices(filter = '') {
+  const f = filter.toLowerCase();
+  const rows = invoices
+    .filter(inv => {
+      if (!f) return true;
+      const client = clientMap[inv.clientId];
+      return inv.id.toLowerCase().includes(f) || client.name.toLowerCase().includes(f) || inv.description.toLowerCase().includes(f) || inv.currency.toLowerCase().includes(f);
+    })
+    .map(inv => {
+      const client = clientMap[inv.clientId];
+      return `<tr>
+        <td><strong>${inv.id}</strong></td>
+        <td>${formatDate(inv.date)}</td>
+        <td>${client.name}</td>
+        <td class="text-muted">${inv.description}</td>
+        <td>${inv.currency}</td>
+        <td class="text-right amount">${formatAmount(inv.amount, inv.currency)}</td>
+        <td class="text-right amount">${formatINR(inv.totalINR)}</td>
+        <td><span class="badge badge-paid">${inv.status}</span></td>
+        <td><button class="btn btn-sm" onclick="downloadInvoice('${inv.file}')"><span class="download-icon"></span>MD</button></td>
+      </tr>`;
+    }).join('');
+  document.getElementById('inv-tbody').innerHTML = rows || '<tr><td colspan="9" style="text-align:center;padding:24px;color:#999">No invoices found</td></tr>';
+}
+
+// ==================== CLIENT VIEW ====================
+function renderClientView(filter = '') {
+  const f = filter.toLowerCase();
+  const html = clients
+    .filter(c => {
+      if (!f) return true;
+      return c.name.toLowerCase().includes(f) || c.country.toLowerCase().includes(f) || c.id.toLowerCase().includes(f);
+    })
+    .map(client => {
+      const cInvs = invoices.filter(i => i.clientId === client.id);
+      if (cInvs.length === 0 && f) return '';
+      const totalINR = cInvs.reduce((s, i) => s + i.totalINR, 0);
+      const invRows = cInvs.map(inv => `
+        <div class="inv-row">
+          <span class="inv-id">${inv.id}</span>
+          <span class="text-muted">${formatDate(inv.date)}</span>
+          <span class="amount">${inv.currency} ${formatAmount(inv.amount, inv.currency)}</span>
+          <button class="btn btn-sm" onclick="downloadInvoice('${inv.file}')"><span class="download-icon"></span></button>
+        </div>
+      `).join('');
+
+      return `<div class="client-card">
+        <h3>${client.name}</h3>
+        <div class="meta">${client.id} &bull; ${client.country} &bull; <span class="badge badge-${client.type}">${client.type}</span></div>
+        ${client.contactPerson ? `<div class="detail"><strong>Contact:</strong> ${client.contactPerson}</div>` : ''}
+        <div class="detail"><strong>Currency:</strong> ${client.currency}</div>
+        <div class="detail"><strong>Invoices:</strong> ${cInvs.length}</div>
+        <div class="invoices-list">${invRows}</div>
+        <div class="client-total"><span>Total (INR)</span><span>${formatINR(totalINR)}</span></div>
+      </div>`;
+    }).filter(Boolean).join('');
+  document.getElementById('client-grid').innerHTML = html || '<p style="padding:24px;color:#999">No clients found</p>';
+}
+
+// ==================== CLIENT REGISTRY ====================
+function renderRegistry(filter = '') {
+  const f = filter.toLowerCase();
+  const rows = clients
+    .filter(c => {
+      if (!f) return true;
+      return c.name.toLowerCase().includes(f) || c.country.toLowerCase().includes(f) || c.id.toLowerCase().includes(f) || c.contactPerson.toLowerCase().includes(f);
+    })
+    .map(c => `<tr>
+      <td><strong>${c.id}</strong></td>
+      <td>${c.name}</td>
+      <td>${c.contactPerson || '—'}</td>
+      <td>${c.country}</td>
+      <td><span class="badge badge-${c.type}">${c.type}</span></td>
+      <td>${c.currency}</td>
+      <td class="text-muted" style="max-width:200px">${c.address}</td>
+      <td class="text-muted">${c.taxId || '—'}</td>
+    </tr>`).join('');
+  document.getElementById('reg-tbody').innerHTML = rows;
+}
+
+// ==================== DOWNLOAD ====================
+function downloadInvoice(filename) {
+  const a = document.createElement('a');
+  a.href = 'invoices/md/' + filename + '.md';
+  a.download = filename + '.md';
+  a.click();
+}
+
+async function downloadAllZip() {
+  // Use JSZip from CDN
+  if (!window.JSZip) {
+    const script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js';
+    document.head.appendChild(script);
+    await new Promise(r => script.onload = r);
+  }
+
+  const zip = new JSZip();
+  const btn = event.target.closest('.btn');
+  const origText = btn.innerHTML;
+  btn.innerHTML = 'Preparing ZIP...';
+  btn.disabled = true;
+
+  try {
+    for (const inv of invoices) {
+      const resp = await fetch('invoices/md/' + inv.file + '.md');
+      if (resp.ok) {
+        const text = await resp.text();
+        zip.file(inv.file + '.md', text);
+      }
+    }
+
+    // Check if PDFs exist and include them
+    for (const inv of invoices) {
+      try {
+        const resp = await fetch('invoices/pdf/' + inv.file + '.pdf');
+        if (resp.ok) {
+          const blob = await resp.blob();
+          zip.file(inv.file + '.pdf', blob);
+        }
+      } catch (e) { /* PDF may not exist yet */ }
+    }
+
+    const blob = await zip.generateAsync({ type: 'blob' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'SG-Invoices-Feb-2026.zip';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  } catch (err) {
+    alert('Error creating ZIP: ' + err.message);
+  } finally {
+    btn.innerHTML = origText;
+    btn.disabled = false;
+  }
+}
+
+// ==================== TABS ====================
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('sec-' + tab.dataset.tab).classList.add('active');
+  });
+});
+
+// ==================== SEARCH ====================
+document.getElementById('inv-search').addEventListener('input', e => renderInvoices(e.target.value));
+document.getElementById('client-search').addEventListener('input', e => renderClientView(e.target.value));
+document.getElementById('reg-search').addEventListener('input', e => renderRegistry(e.target.value));
+
+// ==================== INIT ====================
+renderStats();
+renderInvoices();
+renderClientView();
+renderRegistry();
+</script>
+</body>
+</html>

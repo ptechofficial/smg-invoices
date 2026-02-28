@@ -1,0 +1,31 @@
+{
+  "firmName": "Small Group",
+  "address": "A-299, Sector-47",
+  "city": "Noida",
+  "state": "Uttar Pradesh",
+  "stateCode": "09",
+  "pincode": "201303",
+  "gstin": "09AFPFS6465K1Z1",
+  "pan": "AFPFS6465K",
+  "lutNumber": "",
+  "bank": {
+    "name": "HDFC Bank",
+    "branch": "Kondli",
+    "accountName": "SMALL GROUP",
+    "accountNumber": "99999555903535",
+    "ifsc": "HDFC0000921",
+    "upi": ""
+  },
+  "wise": {
+    "email": "",
+    "accountHolder": ""
+  },
+  "payoneer": {
+    "email": "",
+    "accountHolder": ""
+  },
+  "logo": "",
+  "invoicePrefix": "SG",
+  "financialYear": "2025-26",
+  "nextInvoiceNumber": 11
+}
