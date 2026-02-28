@@ -1,27 +1,624 @@
 [
-  {"id":"SG/2025-26/001","date":"2026-02-01","clientId":"CLT-001","lineItems":[{"description":"AI Development Services","sac":"998315","quantity":1,"rate":4210.13,"amount":4210.13}],"currency":"CAD","exchangeRate":61.75,"subtotal":4210.13,"tax":{"type":"export","gst":0},"total":4210.13,"totalINR":259975.78,"status":"paid","paymentRef":"ICICN22025072913974953"},
-  {"id":"SG/2025-26/002","date":"2026-02-02","clientId":"CLT-006","lineItems":[{"description":"AI Development Services","sac":"998315","quantity":1,"rate":500,"amount":500}],"currency":"USD","exchangeRate":85.43,"subtotal":500,"tax":{"type":"export","gst":0},"total":500,"totalINR":42714.92,"status":"paid","paymentRef":"CITIN52025080404308094"},
-  {"id":"SG/2025-26/003","date":"2026-02-03","clientId":"CLT-004","lineItems":[{"description":"AI Development Services","sac":"998315","quantity":1,"rate":1000,"amount":1000}],"currency":"USD","exchangeRate":85.99,"subtotal":1000,"tax":{"type":"export","gst":0},"total":1000,"totalINR":85990.03,"status":"paid","paymentRef":"CITIN52025080605797487"},
-  {"id":"SG/2025-26/004","date":"2026-02-04","clientId":"CLT-008","lineItems":[{"description":"AI Development Services","sac":"998315","quantity":1,"rate":51100,"amount":51100}],"currency":"INR","subtotal":51100,"tax":{"type":"export","gst":0},"total":51100,"totalINR":51100,"status":"paid","paymentRef":"522450207077"},
-  {"id":"SG/2025-26/005","date":"2026-02-05","clientId":"CLT-004","lineItems":[{"description":"AI Development Services","sac":"998315","quantity":1,"rate":750,"amount":750}],"currency":"USD","exchangeRate":85.70,"subtotal":750,"tax":{"type":"export","gst":0},"total":750,"totalINR":64276.57,"status":"paid","paymentRef":"ICICN22025081833901075"},
-  {"id":"SG/2025-26/006","date":"2026-02-06","clientId":"CLT-004","lineItems":[{"description":"AI Development Services","sac":"998315","quantity":1,"rate":700,"amount":700}],"currency":"USD","exchangeRate":85.84,"subtotal":700,"tax":{"type":"export","gst":0},"total":700,"totalINR":60086.07,"status":"paid","paymentRef":"CITIN52025082815152031"},
-  {"id":"SG/2025-26/007","date":"2026-02-07","clientId":"CLT-001","lineItems":[{"description":"AI Development Services","sac":"998315","quantity":1,"rate":3387.33,"amount":3387.33}],"currency":"CAD","exchangeRate":62.09,"subtotal":3387.33,"tax":{"type":"export","gst":0},"total":3387.33,"totalINR":210300.65,"status":"paid","paymentRef":"ICICN22025082841683410"},
-  {"id":"SG/2025-26/010","date":"2026-02-08","clientId":"CLT-004","lineItems":[{"description":"AI Development Services","sac":"998315","quantity":1,"rate":1200,"amount":1200}],"currency":"USD","exchangeRate":86.45,"subtotal":1200,"tax":{"type":"export","gst":0},"total":1200,"totalINR":103740.40,"status":"paid","paymentRef":"ICICN22025091511669535"},
-  {"id":"SG/2025-26/011","date":"2026-02-09","clientId":"CLT-008","lineItems":[{"description":"AI Development Services","sac":"998315","quantity":1,"rate":91026.97,"amount":91026.97}],"currency":"INR","subtotal":91026.97,"tax":{"type":"export","gst":0},"total":91026.97,"totalINR":91026.97,"status":"paid","paymentRef":"525997611898"},
-  {"id":"SG/2025-26/012","date":"2026-02-10","clientId":"CLT-001","lineItems":[{"description":"DTR Consulting and Development","sac":"998315","quantity":1,"rate":2500,"amount":2500}],"currency":"USD","exchangeRate":88.38,"subtotal":2500,"tax":{"type":"export","gst":0},"total":2500,"totalINR":220952.20,"status":"paid","paymentRef":"527925147936"},
-  {"id":"SG/2025-26/013","date":"2026-02-11","clientId":"CLT-002","lineItems":[{"description":"AI Development Services","sac":"998315","quantity":1,"rate":1250,"amount":1250}],"currency":"USD","exchangeRate":86.92,"subtotal":1250,"tax":{"type":"export","gst":0},"total":1250,"totalINR":108650.53,"status":"paid","paymentRef":"ICICN22025101443253197"},
-  {"id":"SG/2025-26/014","date":"2026-02-12","clientId":"CLT-005","lineItems":[{"description":"AI Development Services","sac":"998315","quantity":1,"rate":1400,"amount":1400}],"currency":"USD","exchangeRate":86.05,"subtotal":1400,"tax":{"type":"export","gst":0},"total":1400,"totalINR":120465.57,"status":"paid","paymentRef":"ICICN22025102301945697"},
-  {"id":"SG/2025-26/015","date":"2026-02-14","clientId":"CLT-001","lineItems":[{"description":"AI Development Services","sac":"998315","quantity":1,"rate":3387.33,"amount":3387.33}],"currency":"CAD","exchangeRate":62.00,"subtotal":3387.33,"tax":{"type":"export","gst":0},"total":3387.33,"totalINR":209993.57,"status":"paid","paymentRef":"CITIN52025110349952498"},
-  {"id":"SG/2025-26/016","date":"2026-02-15","clientId":"CLT-004","lineItems":[{"description":"AI Development Services","sac":"998315","quantity":1,"rate":1575,"amount":1575}],"currency":"USD","exchangeRate":86.79,"subtotal":1575,"tax":{"type":"export","gst":0},"total":1575,"totalINR":136688.35,"status":"paid","paymentRef":"ICICN22025110715094015"},
-  {"id":"SG/2025-26/017","date":"2026-02-16","clientId":"CLT-007","lineItems":[{"description":"AI Development Services","sac":"998315","quantity":1,"rate":173.75,"amount":173.75}],"currency":"USD","exchangeRate":86.81,"subtotal":173.75,"tax":{"type":"export","gst":0},"total":173.75,"totalINR":15083.09,"status":"paid","paymentRef":"ICICN22025110715093998"},
-  {"id":"SG/2025-26/018","date":"2026-02-17","clientId":"CLT-001","lineItems":[{"description":"DTR Consulting and Development","sac":"998315","quantity":1,"rate":3500,"amount":3500}],"currency":"USD","exchangeRate":90.41,"subtotal":3500,"tax":{"type":"export","gst":0},"total":3500,"totalINR":316437.43,"status":"paid","paymentRef":"533229006846"},
-  {"id":"SG/2025-26/020","date":"2026-02-18","clientId":"CLT-005","lineItems":[{"description":"AI Development Services","sac":"998315","quantity":1,"rate":1400,"amount":1400}],"currency":"USD","exchangeRate":88.03,"subtotal":1400,"tax":{"type":"export","gst":0},"total":1400,"totalINR":123246.17,"status":"paid","paymentRef":"CITIN25665189008"},
-  {"id":"SG/2025-26/021","date":"2026-02-19","clientId":"CLT-004","lineItems":[{"description":"AI Development Services","sac":"998315","quantity":1,"rate":1930.50,"amount":1930.50}],"currency":"USD","exchangeRate":88.26,"subtotal":1930.50,"tax":{"type":"export","gst":0},"total":1930.50,"totalINR":170383.85,"status":"paid","paymentRef":"CITIN25665490897"},
-  {"id":"SG/2025-26/022","date":"2026-02-20","clientId":"CLT-003","lineItems":[{"description":"AI Development Services","sac":"998315","quantity":1,"rate":180,"amount":180}],"currency":"USD","exchangeRate":90.54,"subtotal":180,"tax":{"type":"export","gst":0},"total":180,"totalINR":16298.07,"status":"paid","paymentRef":"534011216536"},
-  {"id":"SG/2025-26/023","date":"2026-02-21","clientId":"CLT-002","lineItems":[{"description":"AI Development Services","sac":"998315","quantity":1,"rate":750,"amount":750}],"currency":"USD","exchangeRate":88.08,"subtotal":750,"tax":{"type":"export","gst":0},"total":750,"totalINR":66058.52,"status":"paid","paymentRef":"CITIN25666771263"},
-  {"id":"SG/2025-26/024","date":"2026-02-22","clientId":"CLT-003","lineItems":[{"description":"AI Development Services","sac":"998315","quantity":1,"rate":420,"amount":420}],"currency":"USD","exchangeRate":90.40,"subtotal":420,"tax":{"type":"export","gst":0},"total":420,"totalINR":37966.75,"status":"paid","paymentRef":"535212205244"},
-  {"id":"SG/2025-26/025","date":"2026-02-24","clientId":"CLT-004","lineItems":[{"description":"AI Development Services","sac":"998315","quantity":1,"rate":2722.50,"amount":2722.50}],"currency":"USD","exchangeRate":88.06,"subtotal":2722.50,"tax":{"type":"export","gst":0},"total":2722.50,"totalINR":239748.30,"status":"paid","paymentRef":"CITIN26603079061"},
-  {"id":"SG/2025-26/027","date":"2026-02-25","clientId":"CLT-008","lineItems":[{"description":"AI Development Services","sac":"998315","quantity":1,"rate":78962.44,"amount":78962.44}],"currency":"INR","subtotal":78962.44,"tax":{"type":"export","gst":0},"total":78962.44,"totalINR":78962.44,"status":"paid","paymentRef":"601178934102"},
-  {"id":"SG/2025-26/028","date":"2026-02-26","clientId":"CLT-003","lineItems":[{"description":"AI Development Services","sac":"998315","quantity":1,"rate":800,"amount":800}],"currency":"USD","exchangeRate":90.19,"subtotal":800,"tax":{"type":"export","gst":0},"total":800,"totalINR":72152.37,"status":"paid","paymentRef":"601216179887"},
-  {"id":"SG/2025-26/029","date":"2026-02-28","clientId":"CLT-001","lineItems":[{"description":"DTR Consulting and Development","sac":"998315","quantity":1,"rate":3500,"amount":3500}],"currency":"USD","exchangeRate":92.26,"subtotal":3500,"tax":{"type":"export","gst":0},"total":3500,"totalINR":322896.06,"status":"paid","paymentRef":"601329087411"}
+  {
+    "id": "SG/2025-26/001",
+    "date": "2026-02-01",
+    "clientId": "CLT-001",
+    "lineItems": [
+      {
+        "description": "AI Development Services",
+        "sac": "998315",
+        "quantity": 1,
+        "rate": 4210.13,
+        "amount": 4210.13
+      }
+    ],
+    "currency": "CAD",
+    "exchangeRate": 61.75,
+    "subtotal": 4210.13,
+    "tax": {
+      "type": "export",
+      "gst": 0
+    },
+    "total": 4210.13,
+    "totalINR": 259975.78,
+    "status": "paid",
+    "paymentRef": "ICICN22025072913974953"
+  },
+  {
+    "id": "SG/2025-26/002",
+    "date": "2026-02-02",
+    "clientId": "CLT-006",
+    "lineItems": [
+      {
+        "description": "AI Development Services",
+        "sac": "998315",
+        "quantity": 1,
+        "rate": 500,
+        "amount": 500
+      }
+    ],
+    "currency": "USD",
+    "exchangeRate": 85.43,
+    "subtotal": 500,
+    "tax": {
+      "type": "export",
+      "gst": 0
+    },
+    "total": 500,
+    "totalINR": 42714.92,
+    "status": "paid",
+    "paymentRef": "CITIN52025080404308094"
+  },
+  {
+    "id": "SG/2025-26/003",
+    "date": "2026-02-03",
+    "clientId": "CLT-004",
+    "lineItems": [
+      {
+        "description": "AI Development Services",
+        "sac": "998315",
+        "quantity": 1,
+        "rate": 1000,
+        "amount": 1000
+      }
+    ],
+    "currency": "USD",
+    "exchangeRate": 85.99,
+    "subtotal": 1000,
+    "tax": {
+      "type": "export",
+      "gst": 0
+    },
+    "total": 1000,
+    "totalINR": 85990.03,
+    "status": "paid",
+    "paymentRef": "CITIN52025080605797487"
+  },
+  {
+    "id": "SG/2025-26/004",
+    "date": "2026-02-04",
+    "clientId": "CLT-008",
+    "lineItems": [
+      {
+        "description": "AI Development Services",
+        "sac": "998315",
+        "quantity": 1,
+        "rate": 51100,
+        "amount": 51100
+      }
+    ],
+    "currency": "INR",
+    "subtotal": 51100,
+    "tax": {
+      "type": "export",
+      "gst": 0
+    },
+    "total": 51100,
+    "totalINR": 51100,
+    "status": "paid",
+    "paymentRef": "522450207077"
+  },
+  {
+    "id": "SG/2025-26/005",
+    "date": "2026-02-05",
+    "clientId": "CLT-004",
+    "lineItems": [
+      {
+        "description": "AI Development Services",
+        "sac": "998315",
+        "quantity": 1,
+        "rate": 750,
+        "amount": 750
+      }
+    ],
+    "currency": "USD",
+    "exchangeRate": 85.7,
+    "subtotal": 750,
+    "tax": {
+      "type": "export",
+      "gst": 0
+    },
+    "total": 750,
+    "totalINR": 64276.57,
+    "status": "paid",
+    "paymentRef": "ICICN22025081833901075"
+  },
+  {
+    "id": "SG/2025-26/006",
+    "date": "2026-02-06",
+    "clientId": "CLT-004",
+    "lineItems": [
+      {
+        "description": "AI Development Services",
+        "sac": "998315",
+        "quantity": 1,
+        "rate": 700,
+        "amount": 700
+      }
+    ],
+    "currency": "USD",
+    "exchangeRate": 85.84,
+    "subtotal": 700,
+    "tax": {
+      "type": "export",
+      "gst": 0
+    },
+    "total": 700,
+    "totalINR": 60086.07,
+    "status": "paid",
+    "paymentRef": "CITIN52025082815152031"
+  },
+  {
+    "id": "SG/2025-26/007",
+    "date": "2026-02-07",
+    "clientId": "CLT-001",
+    "lineItems": [
+      {
+        "description": "AI Development Services",
+        "sac": "998315",
+        "quantity": 1,
+        "rate": 3387.33,
+        "amount": 3387.33
+      }
+    ],
+    "currency": "CAD",
+    "exchangeRate": 62.09,
+    "subtotal": 3387.33,
+    "tax": {
+      "type": "export",
+      "gst": 0
+    },
+    "total": 3387.33,
+    "totalINR": 210300.65,
+    "status": "paid",
+    "paymentRef": "ICICN22025082841683410"
+  },
+  {
+    "id": "SG/2025-26/008",
+    "date": "2026-02-08",
+    "clientId": "CLT-004",
+    "lineItems": [
+      {
+        "description": "AI Development Services",
+        "sac": "998315",
+        "quantity": 1,
+        "rate": 1200,
+        "amount": 1200
+      }
+    ],
+    "currency": "USD",
+    "exchangeRate": 86.45,
+    "subtotal": 1200,
+    "tax": {
+      "type": "export",
+      "gst": 0
+    },
+    "total": 1200,
+    "totalINR": 103740.4,
+    "status": "paid",
+    "paymentRef": "ICICN22025091511669535"
+  },
+  {
+    "id": "SG/2025-26/009",
+    "date": "2026-02-09",
+    "clientId": "CLT-008",
+    "lineItems": [
+      {
+        "description": "AI Development Services",
+        "sac": "998315",
+        "quantity": 1,
+        "rate": 91026.97,
+        "amount": 91026.97
+      }
+    ],
+    "currency": "INR",
+    "subtotal": 91026.97,
+    "tax": {
+      "type": "export",
+      "gst": 0
+    },
+    "total": 91026.97,
+    "totalINR": 91026.97,
+    "status": "paid",
+    "paymentRef": "525997611898"
+  },
+  {
+    "id": "SG/2025-26/010",
+    "date": "2026-02-10",
+    "clientId": "CLT-001",
+    "lineItems": [
+      {
+        "description": "DTR Consulting and Development",
+        "sac": "998315",
+        "quantity": 1,
+        "rate": 2500,
+        "amount": 2500
+      }
+    ],
+    "currency": "USD",
+    "exchangeRate": 88.38,
+    "subtotal": 2500,
+    "tax": {
+      "type": "export",
+      "gst": 0
+    },
+    "total": 2500,
+    "totalINR": 220952.2,
+    "status": "paid",
+    "paymentRef": "527925147936"
+  },
+  {
+    "id": "SG/2025-26/011",
+    "date": "2026-02-11",
+    "clientId": "CLT-002",
+    "lineItems": [
+      {
+        "description": "AI Development Services",
+        "sac": "998315",
+        "quantity": 1,
+        "rate": 1250,
+        "amount": 1250
+      }
+    ],
+    "currency": "USD",
+    "exchangeRate": 86.92,
+    "subtotal": 1250,
+    "tax": {
+      "type": "export",
+      "gst": 0
+    },
+    "total": 1250,
+    "totalINR": 108650.53,
+    "status": "paid",
+    "paymentRef": "ICICN22025101443253197"
+  },
+  {
+    "id": "SG/2025-26/012",
+    "date": "2026-02-12",
+    "clientId": "CLT-005",
+    "lineItems": [
+      {
+        "description": "AI Development Services",
+        "sac": "998315",
+        "quantity": 1,
+        "rate": 1400,
+        "amount": 1400
+      }
+    ],
+    "currency": "USD",
+    "exchangeRate": 86.05,
+    "subtotal": 1400,
+    "tax": {
+      "type": "export",
+      "gst": 0
+    },
+    "total": 1400,
+    "totalINR": 120465.57,
+    "status": "paid",
+    "paymentRef": "ICICN22025102301945697"
+  },
+  {
+    "id": "SG/2025-26/013",
+    "date": "2026-02-14",
+    "clientId": "CLT-001",
+    "lineItems": [
+      {
+        "description": "AI Development Services",
+        "sac": "998315",
+        "quantity": 1,
+        "rate": 3387.33,
+        "amount": 3387.33
+      }
+    ],
+    "currency": "CAD",
+    "exchangeRate": 62.0,
+    "subtotal": 3387.33,
+    "tax": {
+      "type": "export",
+      "gst": 0
+    },
+    "total": 3387.33,
+    "totalINR": 209993.57,
+    "status": "paid",
+    "paymentRef": "CITIN52025110349952498"
+  },
+  {
+    "id": "SG/2025-26/014",
+    "date": "2026-02-15",
+    "clientId": "CLT-004",
+    "lineItems": [
+      {
+        "description": "AI Development Services",
+        "sac": "998315",
+        "quantity": 1,
+        "rate": 1575,
+        "amount": 1575
+      }
+    ],
+    "currency": "USD",
+    "exchangeRate": 86.79,
+    "subtotal": 1575,
+    "tax": {
+      "type": "export",
+      "gst": 0
+    },
+    "total": 1575,
+    "totalINR": 136688.35,
+    "status": "paid",
+    "paymentRef": "ICICN22025110715094015"
+  },
+  {
+    "id": "SG/2025-26/015",
+    "date": "2026-02-16",
+    "clientId": "CLT-007",
+    "lineItems": [
+      {
+        "description": "AI Development Services",
+        "sac": "998315",
+        "quantity": 1,
+        "rate": 173.75,
+        "amount": 173.75
+      }
+    ],
+    "currency": "USD",
+    "exchangeRate": 86.81,
+    "subtotal": 173.75,
+    "tax": {
+      "type": "export",
+      "gst": 0
+    },
+    "total": 173.75,
+    "totalINR": 15083.09,
+    "status": "paid",
+    "paymentRef": "ICICN22025110715093998"
+  },
+  {
+    "id": "SG/2025-26/016",
+    "date": "2026-02-17",
+    "clientId": "CLT-001",
+    "lineItems": [
+      {
+        "description": "DTR Consulting and Development",
+        "sac": "998315",
+        "quantity": 1,
+        "rate": 3500,
+        "amount": 3500
+      }
+    ],
+    "currency": "USD",
+    "exchangeRate": 90.41,
+    "subtotal": 3500,
+    "tax": {
+      "type": "export",
+      "gst": 0
+    },
+    "total": 3500,
+    "totalINR": 316437.43,
+    "status": "paid",
+    "paymentRef": "533229006846"
+  },
+  {
+    "id": "SG/2025-26/017",
+    "date": "2026-02-18",
+    "clientId": "CLT-005",
+    "lineItems": [
+      {
+        "description": "AI Development Services",
+        "sac": "998315",
+        "quantity": 1,
+        "rate": 1400,
+        "amount": 1400
+      }
+    ],
+    "currency": "USD",
+    "exchangeRate": 88.03,
+    "subtotal": 1400,
+    "tax": {
+      "type": "export",
+      "gst": 0
+    },
+    "total": 1400,
+    "totalINR": 123246.17,
+    "status": "paid",
+    "paymentRef": "CITIN25665189008"
+  },
+  {
+    "id": "SG/2025-26/018",
+    "date": "2026-02-19",
+    "clientId": "CLT-004",
+    "lineItems": [
+      {
+        "description": "AI Development Services",
+        "sac": "998315",
+        "quantity": 1,
+        "rate": 1930.5,
+        "amount": 1930.5
+      }
+    ],
+    "currency": "USD",
+    "exchangeRate": 88.26,
+    "subtotal": 1930.5,
+    "tax": {
+      "type": "export",
+      "gst": 0
+    },
+    "total": 1930.5,
+    "totalINR": 170383.85,
+    "status": "paid",
+    "paymentRef": "CITIN25665490897"
+  },
+  {
+    "id": "SG/2025-26/019",
+    "date": "2026-02-20",
+    "clientId": "CLT-003",
+    "lineItems": [
+      {
+        "description": "AI Development Services",
+        "sac": "998315",
+        "quantity": 1,
+        "rate": 180,
+        "amount": 180
+      }
+    ],
+    "currency": "USD",
+    "exchangeRate": 90.54,
+    "subtotal": 180,
+    "tax": {
+      "type": "export",
+      "gst": 0
+    },
+    "total": 180,
+    "totalINR": 16298.07,
+    "status": "paid",
+    "paymentRef": "534011216536"
+  },
+  {
+    "id": "SG/2025-26/020",
+    "date": "2026-02-21",
+    "clientId": "CLT-002",
+    "lineItems": [
+      {
+        "description": "AI Development Services",
+        "sac": "998315",
+        "quantity": 1,
+        "rate": 750,
+        "amount": 750
+      }
+    ],
+    "currency": "USD",
+    "exchangeRate": 88.08,
+    "subtotal": 750,
+    "tax": {
+      "type": "export",
+      "gst": 0
+    },
+    "total": 750,
+    "totalINR": 66058.52,
+    "status": "paid",
+    "paymentRef": "CITIN25666771263"
+  },
+  {
+    "id": "SG/2025-26/021",
+    "date": "2026-02-22",
+    "clientId": "CLT-003",
+    "lineItems": [
+      {
+        "description": "AI Development Services",
+        "sac": "998315",
+        "quantity": 1,
+        "rate": 420,
+        "amount": 420
+      }
+    ],
+    "currency": "USD",
+    "exchangeRate": 90.4,
+    "subtotal": 420,
+    "tax": {
+      "type": "export",
+      "gst": 0
+    },
+    "total": 420,
+    "totalINR": 37966.75,
+    "status": "paid",
+    "paymentRef": "535212205244"
+  },
+  {
+    "id": "SG/2025-26/022",
+    "date": "2026-02-24",
+    "clientId": "CLT-004",
+    "lineItems": [
+      {
+        "description": "AI Development Services",
+        "sac": "998315",
+        "quantity": 1,
+        "rate": 2722.5,
+        "amount": 2722.5
+      }
+    ],
+    "currency": "USD",
+    "exchangeRate": 88.06,
+    "subtotal": 2722.5,
+    "tax": {
+      "type": "export",
+      "gst": 0
+    },
+    "total": 2722.5,
+    "totalINR": 239748.3,
+    "status": "paid",
+    "paymentRef": "CITIN26603079061"
+  },
+  {
+    "id": "SG/2025-26/023",
+    "date": "2026-02-25",
+    "clientId": "CLT-008",
+    "lineItems": [
+      {
+        "description": "AI Development Services",
+        "sac": "998315",
+        "quantity": 1,
+        "rate": 78962.44,
+        "amount": 78962.44
+      }
+    ],
+    "currency": "INR",
+    "subtotal": 78962.44,
+    "tax": {
+      "type": "export",
+      "gst": 0
+    },
+    "total": 78962.44,
+    "totalINR": 78962.44,
+    "status": "paid",
+    "paymentRef": "601178934102"
+  },
+  {
+    "id": "SG/2025-26/024",
+    "date": "2026-02-26",
+    "clientId": "CLT-003",
+    "lineItems": [
+      {
+        "description": "AI Development Services",
+        "sac": "998315",
+        "quantity": 1,
+        "rate": 800,
+        "amount": 800
+      }
+    ],
+    "currency": "USD",
+    "exchangeRate": 90.19,
+    "subtotal": 800,
+    "tax": {
+      "type": "export",
+      "gst": 0
+    },
+    "total": 800,
+    "totalINR": 72152.37,
+    "status": "paid",
+    "paymentRef": "601216179887"
+  },
+  {
+    "id": "SG/2025-26/025",
+    "date": "2026-02-28",
+    "clientId": "CLT-001",
+    "lineItems": [
+      {
+        "description": "DTR Consulting and Development",
+        "sac": "998315",
+        "quantity": 1,
+        "rate": 3500,
+        "amount": 3500
+      }
+    ],
+    "currency": "USD",
+    "exchangeRate": 92.26,
+    "subtotal": 3500,
+    "tax": {
+      "type": "export",
+      "gst": 0
+    },
+    "total": 3500,
+    "totalINR": 322896.06,
+    "status": "paid",
+    "paymentRef": "601329087411"
+  }
 ]

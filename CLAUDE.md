@@ -37,89 +37,20 @@ Ask: name, address, country. If Indian → ask GSTIN, state. Set type = "domesti
    - **Domestic, different state**: IGST 18%
 5. Generate invoice ID: `{prefix}/{financialYear}/{number}` → e.g. SG/2025-26/001
 6. Save to `data/invoices.json`, increment nextInvoiceNumber in business.json
-7. Write the invoice as markdown to `invoices/md/{id}.md` using the template below
-8. Convert to PDF: `pandoc invoices/md/{filename}.md -o invoices/pdf/{filename}.pdf --pdf-engine=wkhtmltopdf` OR `pandoc invoices/md/{filename}.md -o invoices/pdf/{filename}.pdf` (use whatever pandoc supports)
+7. Generate the PDF directly by running: `source .venv/bin/activate && python scripts/generate_pdf.py "SG/2025-26/XXX"` (replace XXX with the invoice number). This reads the invoice from `data/invoices.json`, renders a professional HTML template, and outputs a PDF to `invoices/pdf/`.
+8. To regenerate all invoices as PDFs: `source .venv/bin/activate && python scripts/generate_pdf.py --all`
 
-### Invoice Markdown Template
+### PDF Generation
 
-When writing an invoice markdown file, follow this structure:
+Invoices are generated directly as PDFs using `scripts/generate_pdf.py` (powered by weasyprint). The script:
+- Reads invoice data from `data/invoices.json`
+- Looks up client and business details
+- Renders a professional HTML template with CSS styling
+- Outputs to `invoices/pdf/{id}.pdf` (slashes in ID replaced with dashes)
 
-```markdown
-# TAX INVOICE
-<!-- or "PROFORMA INVOICE" or "TAX INVOICE — EXPORT OF SERVICES" -->
+The PDF includes: header with invoice title and meta, from/to parties, line items table, tax/totals breakdown, amount in words, bank details, notes/terms, and authorized signatory block.
 
----
-
-**Invoice No:** SG/2025-26/001
-**Date:** 28 Feb 2026
-**Due Date:** 30 Mar 2026
-**LUT No:** XXXXXXX _(only for export invoices)_
-
----
-
-### From
-
-**{Firm Name}**
-{Address}
-{City}, {State} — {Pincode}
-GSTIN: {GSTIN}
-PAN: {PAN}
-
-### Bill To
-
-**{Client Name}**
-{Client Address}
-{City}, {State/Country}
-GSTIN: {Client GSTIN} _(only for domestic)_
-
----
-
-| # | Description | SAC | Qty | Rate ({Currency}) | Amount ({Currency}) |
-|---|-------------|-----|-----|-------------------|---------------------|
-| 1 | AI Development — LLM Integration (Feb 2026) | 998315 | 1 | 5,000.00 | 5,000.00 |
-| 2 | Software Dev — API Backend (Feb 2026) | 998314 | 1 | 3,000.00 | 3,000.00 |
-
----
-
-|  | |
-|---|---|
-| **Subtotal** | USD 8,000.00 |
-| CGST @ 9% | INR 0.00 |  _(show relevant tax lines only)_
-| SGST @ 9% | INR 0.00 |
-| IGST @ 18% | INR 0.00 |
-| GST | NIL (Export under LUT) | _(for exports)_
-| Exchange Rate | 1 USD = INR 83.50 | _(only for non-INR)_
-| **Total** | **USD 8,000.00** |
-| Total in INR | INR 6,68,000.00 | _(only for non-INR)_
-
-**Amount in words:** US Dollars Eight Thousand Only
-
----
-
-### Bank Details
-
-| | |
-|---|---|
-| Account Name | {Account Name} |
-| Account Number | {Account Number} |
-| IFSC | {IFSC} |
-| Bank | {Bank Name}, {Branch} |
-| UPI | {UPI} | _(if available)_
-
----
-
-**Notes:** Thank you for your business.
-
-**Terms & Conditions:**
-Payment is due within 30 days of invoice date.
-Late payments may attract interest at 18% per annum.
-
----
-
-For **{Firm Name}**
-
-_Authorized Signatory_
-```
+The Python venv is at `.venv/` — always activate it before running the script.
 
 ### Importing Bank Statements
 

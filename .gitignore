@@ -2,6 +2,6 @@
 .claude/
 statements/
 MSME.pdf
-invoices/pdf/
+.venv/
 __pycache__/
 *.pyc
